@@ -1,4 +1,22 @@
+import { useState } from "react";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithFacebook,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase.init";
+
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [signInWithFacebook] = useSignInWithFacebook(auth);
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+
   return (
     <div className="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5">
       <div
@@ -218,42 +236,6 @@ const Register = () => {
             </div>
             <div>
               <div className="flex -mx-3">
-                <div className="w-1/2 px-3 mb-5">
-                  <label htmlFor="" className="text-xs font-semibold px-1">
-                    First name
-                  </label>
-                  <div className="flex">
-                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                      <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                    </div>
-                    <input
-                      type="text"
-                      required={true}
-                      name="firstName"
-                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                      placeholder="John"
-                    />
-                  </div>
-                </div>
-                <div className="w-1/2 px-3 mb-5">
-                  <label htmlFor="" className="text-xs font-semibold px-1">
-                    Last name
-                  </label>
-                  <div className="flex">
-                    <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                      <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                    </div>
-                    <input
-                      type="text"
-                      required
-                      name="lastName"
-                      className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                      placeholder="Smith"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex -mx-3">
                 <div className="w-full px-3 mb-5">
                   <label htmlFor="" className="text-xs font-semibold px-1">
                     Email
@@ -263,9 +245,11 @@ const Register = () => {
                       <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                     </div>
                     <input
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
                       type="email"
                       name="email"
-                      required
+                      required={true}
                       className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="johnsmith@example.com"
                     />
@@ -283,7 +267,9 @@ const Register = () => {
                     </div>
                     <input
                       type="password"
-                      required
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      required={true}
                       name="password"
                       className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                       placeholder="************"
@@ -293,10 +279,25 @@ const Register = () => {
               </div>
               <div className="flex -mx-3">
                 <div className="w-full px-3 mb-5">
-                  <button className="block relative w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                  <button
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      try {
+                        await createUserWithEmailAndPassword(email, password);
+                        location.state?.from?.pathname
+                          ? navigate(location.state?.from?.pathname)
+                          : navigate("/");
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    }}
+                    className="block relative w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                  >
                     REGISTER NOW
                     <svg
-                      className={`animate-spin -ml-1 mr-3 h-5 w-5 text-white absolute right-2 top-3`}
+                      className={`${
+                        loading ? "block" : "hidden"
+                      } animate-spin -ml-1 mr-3 h-5 w-5 text-white absolute right-2 top-3`}
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -321,13 +322,34 @@ const Register = () => {
               <div className="social media text-center">
                 <h1 className="text-xl font-bold">Register with</h1>
                 <div className="flex space-x-4 mt-5 justify-center">
-                  <span className="cursor-pointer bg-[#D64E41] p-3 rounded-full">
+                  <span
+                    onClick={async () => {
+                      try {
+                        await signInWithGoogle();
+                        location.state?.from?.pathname
+                          ? navigate(location.state?.from?.pathname)
+                          : navigate("/");
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    }}
+                    className="cursor-pointer bg-[#D64E41] p-3 rounded-full"
+                  >
                     <i className="fa-brands fa-google text-xl text-white"></i>
                   </span>
-                  <span className="cursor-pointer bg-black p-3 rounded-full">
-                    <i className="fa-brands fa-github text-xl"></i>
-                  </span>
-                  <span className="cursor-pointer bg-[#183153] rounded-full p-3">
+                  <span
+                    onClick={async () => {
+                      try {
+                        await signInWithFacebook();
+                        location.state?.from?.pathname
+                          ? navigate(location.state?.from?.pathname)
+                          : navigate("/");
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    }}
+                    className="cursor-pointer bg-[#183153] rounded-full p-3"
+                  >
                     <i className="fa-brands fa-facebook-square text-xl"></i>
                   </span>
                 </div>

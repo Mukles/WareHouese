@@ -6,6 +6,7 @@ import Inventory from './Components/Inventory/inventory';
 import Navbar from "./Components/shared/Header/header";
 import Login from "./Components/shared/Login/login";
 import Register from './Components/shared/Register/register';
+import RequireAuth from './Components/shared/requiredAuth';
 import Slider from './Components/shared/Slider/slider';
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
       <Slider />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/inventory' element={<Inventory />} />
-        <Route exact path='/inventory/:id' element={<CertainProduct />} />
+        <Route exact path='/inventory' element={<RequireAuth><Inventory /></RequireAuth>} />
+        <Route exact path='/inventory/:id' element={<RequireAuth><CertainProduct /></RequireAuth>} />
         <Route exact path='/contact' element={<ContactUs />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path='/register' element={<Register />} />

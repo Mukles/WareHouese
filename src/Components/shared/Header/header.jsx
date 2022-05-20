@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../firebase.init";
 
 const Header = () => {
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -59,20 +65,20 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/inventory"
                 className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
-                Inventory
-              </a>
+                Manage Inventory
+              </Link>
             </li>
             <li>
               <a
@@ -91,6 +97,27 @@ const Header = () => {
               </a>
             </li>
           </ul>
+        </div>
+        <div
+          onClick={() => signOut(auth)}
+          className="user flex space-x-2 cursor-pointer"
+          title="log-out"
+        >
+          {user ? (
+            user?.photoURL ? (
+              <img src=" " alt="" srcset="" />
+            ) : (
+              <i className="fa-solid fa-user text-white"></i>
+            )
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-yellow-400 font-semibold text-lg px-5 py-2 rounded-sm"
+            >
+              Login
+            </button>
+          )}
+          <p className="text-sm font-semibold text-white">{user?.email}</p>
         </div>
       </div>
     </nav>
