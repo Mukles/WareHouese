@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const Inventory = () => {
+  let navigate = useNavigate();
+
   const catagories = [
     {
       name: "Electronics",
@@ -49,9 +53,13 @@ const Inventory = () => {
       <div className="container px-5 mx-auto">
         <div className="title mb-3">
           {/*Header*/}
-          <h1 className="text-xl flex space-x-6">
-            <span className="text-black font-bold">Shop By Categories</span>
-            <span className="text-[#7B818F]">Discover Best of Items</span>
+          <h1 className=" flex-col flex sm:flex-row sm:space-x-6">
+            <span className="text-black font-bold text-2xl sm:text-xl">
+              Shop By Categories
+            </span>
+            <span className="text-[#7B818F] text-lg">
+              Discover Best of Items
+            </span>
           </h1>
         </div>
         {/*body*/}
@@ -120,8 +128,13 @@ const Inventory = () => {
                         </svg>
                       ))}
                   </div>
-                  <button className="border-2 px-7 text-sm text-[#666666] font-bold rounded-md py-2 border-yellow-400 hover:bg-yellow-400">
-                    + Add to cart
+                  <button
+                    onClick={() => {
+                      navigate("");
+                    }}
+                    className="border-2 px-7 text-sm text-[#666666] font-bold rounded-md py-2 border-yellow-400 hover:bg-yellow-400"
+                  >
+                    + Update
                   </button>
                 </div>
               ))}
