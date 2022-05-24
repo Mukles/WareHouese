@@ -10,16 +10,11 @@ const Header = () => {
   return (
     <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="https://flowbite.com" className="flex items-center">
-          <img
-            src="/docs/images/logo.svg"
-            className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
-          />
+        <Link to="/" className="flex items-center">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             WareHoues
           </span>
-        </a>
+        </Link>
         <button
           data-collapse-toggle="mobile-menu"
           type="button"
@@ -100,12 +95,17 @@ const Header = () => {
         </div>
         <div
           onClick={() => signOut(auth)}
-          className="user flex space-x-2 cursor-pointer"
+          className="user flex space-x-2 cursor-pointer items-center justify-center"
           title="log-out"
         >
           {user ? (
             user?.photoURL ? (
-              <img src=" " alt="" srcset="" />
+              <img
+                className="w-8 h-8 rounded-full object-cover"
+                src={user.photoURL}
+                alt=""
+                srcset=""
+              />
             ) : (
               <i className="fa-solid fa-user text-white"></i>
             )

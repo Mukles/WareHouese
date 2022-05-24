@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "img": "/img/01-1-209x230.jpg",
     "name": "Clean Silk Puff-Sleeve Shirt",
     "stock": 10,
@@ -7,6 +8,7 @@
     "price": 110
   },
   {
+    "id": 2,
     "img": "/img/01-1-209x230.jpg",
     "name": "Clean Silk Puff-Sleeve Shirt",
     "review": 4,
@@ -14,6 +16,7 @@
     "price": 110
   },
   {
+    "id": 3,
     "img": "/img/01-1-209x230.jpg",
     "name": "Clean Silk Puff-Sleeve Shirt",
     "review": 4,
@@ -21,6 +24,7 @@
     "price": 110
   },
   {
+    "id": 4,
     "img": "/img/01-1-209x230.jpg",
     "name": "Clean Silk Puff-Sleeve Shirt",
     "review": 4,
