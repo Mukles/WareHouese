@@ -1,10 +1,38 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 const ShopsBrand = () => {
+  const [brandImages, setBrandImage] = useState({
+    brandImage: [],
+    isLoading: true,
+  });
+  useEffect(() => {
+    axios.get("/BrandContainer.json").then((res) =>
+      setBrandImage({
+        ...brandImages,
+        brandImage: res.data,
+        isLoading: false,
+      })
+    );
+  }, []);
+
   return (
-    <div className="container px-5 mx-auto">
-      <div className="title flex space-x-4">
-        <h1 className="text-2xl font-bold">Shop By Brands</h1>
-        <h2 className="text-xl text-[#7B818F]">Over 1000+ Brands</h2>
-      </div>
+    <div className="conataine px-5 mx-auto py-4">
+      {brandImages.isLoading ? (
+        <h1 className="text-2xl font-bold">Loading...</h1>
+      ) : (
+        <Swiper slidesPerView={8} spaceBetween={0} className="mySwiper">
+          {brandImages.brandImage.length > 0 &&
+            brandImages.brandImage.map((brand, idx) => (
+              <SwiperSlide key={idx}>
+                <img src={`/img/brand${brand.path}`} alt="" srcset="" />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      )}
     </div>
   );
 };

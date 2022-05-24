@@ -14,7 +14,7 @@ const Discount = () => {
               Join our email subscription now to get updates <br /> on
               promotions and coupons.
             </h5>
-            <div className="bg-white px-2 flex justify-between items-center py-1 rounded-md">
+            <div className="bg-white px-2 flex space-x-3 w-[22.3rem] items-center py-1 rounded-md">
               <i className="fa-solid fa-envelope text-[#C4C5D4] text-lg"></i>
               <input
                 className="focus:outline-none px-2"

@@ -104,7 +104,7 @@ const Header = () => {
                 className="w-8 h-8 rounded-full object-cover"
                 src={user.photoURL}
                 alt=""
-                srcset=""
+                srcSet=""
               />
             ) : (
               <i className="fa-solid fa-user text-white"></i>

@@ -11,8 +11,9 @@ const Inventory = ({ product }) => {
       <div className="flex items-center justify-center mx-auto">
         {Array(5)
           .fill("")
-          .map((item) => (
+          .map((item, idx) => (
             <svg
+              key={idx}
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
               viewBox="0 0 20 20"
