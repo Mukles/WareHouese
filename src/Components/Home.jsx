@@ -7,18 +7,26 @@ import ShopsBrand from "./ShopsBrand/shopsBrand";
 
 const Home = () => {
   const [data] = useFetchData();
+  console.log(data);
   return (
     <>
       <Slider />
       {/***Inventory***/}
-      <div className="container px-5 mx-auto">
-        <h1 className="text-5xl py-3 font-bold text-center mb-5">Inventroy</h1>
-        <div className="grid grid-cols-3 gap-3">
-          {data.map((product, idx) => (
-            <Inventory key={idx} product={product} />
-          ))}
+      <div className="container py-8 mx-auto">
+        <div className="bg-white">
+          <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 lg:py-10">
+            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+              Customers also purchased
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {data.map((product, idx) => (
+              <Inventory key={idx} product={product} />
+            ))}
+          </div>
         </div>
       </div>
+
       {/***DISCOUNT ***/}
       <Discount />
       {/***SHOPS BRAND ***/}
