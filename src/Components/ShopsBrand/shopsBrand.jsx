@@ -29,7 +29,7 @@ const ShopsBrand = () => {
             brandImages.brandImage.map((brand, idx) => (
               <SwiperSlide key={idx}>
                 <a href="">
-                  <img src={`/img/brand${brand.path}`} alt="" srcset="" />
+                  <img src={`/img/brand${brand.path}`} alt="" srcSet="" />
                 </a>
               </SwiperSlide>
             ))}

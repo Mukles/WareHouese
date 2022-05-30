@@ -8,11 +8,16 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-5 dark:bg-gray-800">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/" className="flex items-center">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-            WareHoues
+            <img
+              className=" w-3"
+              src="https://www.techlandbd.com/image/cache/catalog/AAA-Offer/logo/techland_logo_white.png-1228x192.png"
+              alt=""
+              srcSet=""
+            />
           </span>
         </Link>
         <button
@@ -73,6 +78,14 @@ const Header = () => {
                 className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 Manage Inventory
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/myProduct"
+                className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                MY Product
               </Link>
             </li>
             <li>
