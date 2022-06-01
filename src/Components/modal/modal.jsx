@@ -14,7 +14,6 @@ const AddProudctModal = ({ setOff, showModal }) => {
     Description: "",
     supplirName: "",
   });
-  console.log(product);
   return (
     <div
       id="large-modal"

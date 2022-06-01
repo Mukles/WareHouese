@@ -4,7 +4,7 @@ import AddProudctModal from "../modal/modal";
 import Inventory from "./inventory";
 
 const ManageInventory = () => {
-  const [products] = useFetchData();
+  const [products, setProduct] = useFetchData();
   const [showModal, setShowmodal] = useState(false);
   return (
     <>
@@ -38,7 +38,7 @@ const ManageInventory = () => {
         <div className="grid md:grid-cols-2 md:gap-3 lg:grid-cols-4 lg:gap-5">
           {products.length > 0 ? (
             products.map((product, idx) => (
-              <Inventory key={idx} product={product} />
+              <Inventory key={idx} product={product} setProduct={setProduct} />
             ))
           ) : (
             <h1 className="text-3xl font-bold text-red-500 text-center">

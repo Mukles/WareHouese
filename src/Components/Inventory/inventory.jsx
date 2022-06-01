@@ -1,8 +1,13 @@
 import axios from "axios";
+import { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase.init";
 
-const Inventory = ({ product }) => {
+const Inventory = ({ product, setProduct }) => {
   const navigate = useNavigate();
+  const [user, loading] = useAuthState(auth);
+  useEffect(() => {}, []);
   return (
     <div className="group relative">
       <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
@@ -41,16 +46,21 @@ const Inventory = ({ product }) => {
         </button>
         <button
           onClick={() => {
-            if (
-              window.confirm("Are you sure you want to delete this item!") ===
-              true
-            ) {
-              axios
-                .delete(`http://localhost:8080/product/${product._id}`)
-                .then((res) => {
-                  alert(res.data);
-                  navigate("/inventory");
-                });
+            if (!user && loading === false) {
+              alert("login required!");
+            } else {
+              if (
+                window.confirm("Are you sure you want to delete this item!") ===
+                true
+              ) {
+                axios
+                  .delete(`http://localhost:8080/product/${product._id}`)
+                  .then((res) => {
+                    const { products, message } = res.data;
+                    alert(message);
+                    setProduct([...products]);
+                  });
+              }
             }
           }}
           className="mt-3 bg-slate-600 px-2 py-1 mx-auto text-lg text-orange-500 font-medium flex space-x-3 justify-center items-center"

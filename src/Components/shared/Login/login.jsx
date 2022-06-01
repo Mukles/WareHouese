@@ -8,7 +8,6 @@ import { auth } from "../../../firebase.init";
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const [signInWithFacebook] = useSignInWithFacebook(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
@@ -20,7 +19,7 @@ const Login = () => {
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
               className="w-full"
-              alt="Sample image"
+              alt="Sampleimage"
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
@@ -108,7 +107,7 @@ const Login = () => {
                   />
                   <label
                     className="form-check-label inline-block text-gray-800"
-                    for="exampleCheck2"
+                    htmlFor="exampleCheck2"
                   >
                     Remember me
                   </label>
