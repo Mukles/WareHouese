@@ -157,7 +157,10 @@ const AddProudctModal = ({ setOff, showModal }) => {
                   setProduct({ ...product, supplirName: user?.email });
                   try {
                     axios
-                      .post("http://localhost:8080/prouduct/add", product)
+                      .post(
+                        "https://afternoon-brushlands-19443.herokuapp.com/prouduct/add",
+                        product
+                      )
                       .then((res) => alert("Inserted Successfully!"));
                   } catch (err) {
                     console.log(err);

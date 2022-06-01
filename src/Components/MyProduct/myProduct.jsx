@@ -9,7 +9,9 @@ const MyProdcut = () => {
   const [products, setProduct] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/myProduct/${user?.email}`)
+      .get(
+        `https://afternoon-brushlands-19443.herokuapp.com/myProduct/${user?.email}`
+      )
       .then((res) => setProduct(res.data));
   }, [loading]);
 

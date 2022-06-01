@@ -54,7 +54,9 @@ const Inventory = ({ product, setProduct }) => {
                 true
               ) {
                 axios
-                  .delete(`http://localhost:8080/product/${product._id}`)
+                  .delete(
+                    `https://afternoon-brushlands-19443.herokuapp.com/product/${product._id}`
+                  )
                   .then((res) => {
                     const { products, message } = res.data;
                     alert(message);

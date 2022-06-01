@@ -5,8 +5,9 @@ export const useFetchData = () => {
   const [products, setProduct] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/").then((res) => setProduct(res.data));
+    axios
+      .get("https://afternoon-brushlands-19443.herokuapp.com/")
+      .then((res) => setProduct(res.data));
   }, []);
-
   return [products, setProduct];
 };

@@ -11,7 +11,7 @@ const CertainProduct = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/product/${id}`)
+      .get(`https://afternoon-brushlands-19443.herokuapp.com/product/${id}`)
       .then((res) => setProduct(res.data));
   }, []);
 
@@ -77,7 +77,7 @@ const CertainProduct = () => {
                   if (window.confirm("Deliverd the item?")) {
                     axios
                       .put(
-                        `http://localhost:8080/proudct/deliver/${product._id}`
+                        `https://afternoon-brushlands-19443.herokuapp.com/proudct/deliver/${product._id}`
                       )
                       .then((res) => setProduct(res.data));
                   }
