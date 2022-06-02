@@ -1,8 +1,8 @@
 const Discount = () => {
   return (
     <div className="bg-[#233a95]">
-      <div className="container px-5 mx-auto">
-        <div className="flex justify-between items-center">
+      <div className="container pt-5 px-5 mx-auto">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
           <div className="felx flex-col space-y-2">
             <h3 className="text-lg text-white">
               $20 discount for your first order
@@ -14,18 +14,20 @@ const Discount = () => {
               Join our email subscription now to get updates <br /> on
               promotions and coupons.
             </h5>
-            <div className="bg-white px-2 flex space-x-3 w-[22.3rem] items-center py-1 rounded-md">
-              <i className="fa-solid fa-envelope text-[#C4C5D4] text-lg"></i>
-              <input
-                className="focus:outline-none px-2"
-                type="email"
-                name=""
-                id=""
-              />
-              <button className="bg-[#233A95] text-white font-bold py-2 px-3 text-lg rounded-md">
-                Subscribe
-              </button>
+          </div>
+          <div className="bg-white flex flex-shrink">
+            <div className="icon px-1 flex justify-center items-center">
+              <i className="fa-solid fa-envelope text-gray-400"></i>
             </div>
+            <input
+              className="px-2 flex-grow focus:outline-none py-2"
+              type="email"
+              name=""
+              id=""
+            />
+            <button className="ml-auto bg-yellow-400 font-white hover:bg-yellow-500 px-1 font-bold">
+              Subscribe
+            </button>
           </div>
           <img src="/img/brand/coupon.png" srcSet="" alt="" />
         </div>
